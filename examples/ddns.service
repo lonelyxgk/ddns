@@ -1,0 +1,14 @@
+[Unit]
+Description=A lightweight DDNS
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/pato/to
+ExecStart=/path/to/ddns -c /path/to/config.toml
+Restart=always
+RestartSec=120
+
+[Install]
+WantedBy=multi-user.target
