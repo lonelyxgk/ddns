@@ -19,7 +19,7 @@
 
 ## 使用
 
-- 从 [Releases](Releases) 下载并解压
+- 从 [Releases](https://github.com/lonelyxgk/ddns/releases/latest) 下载并解压
 - 运行`ddns generate`生成配置文件
 - 修改`config.toml`
 - 启动`ddns -c config.toml`启动(如果配置文件在同一目录可以直接启动)
