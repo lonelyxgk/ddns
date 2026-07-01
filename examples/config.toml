@@ -1,0 +1,50 @@
+[config]
+# Support GetType: Text Json
+# Params Example: {"ip": { "ipv4": "", "ipv6": "" } } Params: ip.ipv6 / ip.ipv4
+ipv6 = [
+    { url="https://v6.ident.me/", type="text"},
+    { url="https://ipv6.my.ipinfo.app/api/ip", type="json", params = "ip"}
+]
+ipv4 = [
+    { url="https://v4.ident.me/", type="text"},
+    { url="https://uapis.cn/api/v1/network/myip/", type="json", params = "ip"},
+    { url="https://ipv4.my.ipinfo.app/api/ip", type="json", params = "ip"}
+]
+# ( Must monitorip < syncip )
+# DDNS IP Sync Time
+monitorip = 10
+# DNS Provider Sync Time
+syncip = 100
+
+# DNS Provider 
+# Example: [dns.{custom}]
+[dns.cloudflare111]
+# Provider:
+# Cloudflare
+provider = { type="cloudflare", serect = { key = "x" } }
+# Records:
+# Support Type: A, AAAA, CNAME, SRV
+records = [
+    { domain="example.org", type="A", hostname="test", target="${ipv4}", triggers = ["test"]},
+    { domain="example.org", type="AAAA", hostname="test", target="${ipv6}", triggers = ["test"]}
+]
+
+# WebHook
+# Example: [webhook.{custom}]
+[webhook.test]
+# Type: HEAD, GET, POST, PUT, PATCH, DELETE
+type = "GET"
+# valid URL
+url = "https://example.com/"
+# valid JSON
+json = "{}"
+
+# Support Placeholder:
+# ${ipv4}
+# ${ipv6}
+# ${timestamp}
+
+### Support Provider:
+### Cloudflare:
+#### Use API
+#### Permissions: Zone Read,DNS Read, DNS Write
