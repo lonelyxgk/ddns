@@ -1,12 +1,8 @@
 # DDNS
 
----
-
 中文 | [English](README_EN.md)
 
 ## 介绍
-
----
 
 ### 平台支持
 
@@ -23,15 +19,11 @@
 
 ## 使用
 
----
-
 - 从 [Releases](Releases) 下载并解压
 - 运行`ddns generate`生成配置文件
 - 修改`config.toml`
 - 启动`ddns -c config.toml`启动(如果配置文件在同一目录可以直接启动)
 
 ## 用法
-
----
 
 全部用法在[config.toml](examples/config.toml)中
