@@ -1,0 +1,30 @@
+### aarch64-linux-android x86_64-linux-android
+### x86_64-unknown-linux-gnu aarch64-unknown-linux-gnu riscv64gc-unknown-linux-gnu x86_64-unknown-linux-musl
+### x86_64-pc-windows-gnu
+### 
+
+[build]
+build-std = true
+default-target = "x86_64-unknown-linux-gnu"
+pre-build = []
+
+[target.aarch64-linux-android]
+build-std = false
+[target.aarch64-linux-android.env]
+volumes = [
+    "CC_aarch64_linux_android",
+    "CXX_aarch64_linux_android",
+    "AR_aarch64_linux_android",
+    "CARGO_TARGET_AARCH64_LINUX_ANDROID_LINUX_ANDROID_LINKER"
+]
+
+[target.x86_64-linux-android]
+build-std = false
+[target.x86_64-linux-android.env]
+volumes = [
+    "CC_x86_64_linux_android",
+    "CXX_x86_64_linux_android",
+    "AR_x86_64_linux_android",
+    "CARGO_TARGET_X86_64_LINUX_ANDROID_LINKER"
+]
+
