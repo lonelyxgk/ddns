@@ -328,7 +328,7 @@ pub(super) async fn request(auth: String, resolv: Resolv) -> Result<(), Error> {
     if !resp.status().is_success() {
         warn!("{}.{} update fail", &resolv.domain, &resolv.hostname)
     } else {
-        info!("{}.{} updated", &resolv.domain, &resolv.hostname)
+        info!("{}.{} updated", &resolv.hostname, &resolv.domain)
     }
 
     tokio::spawn(async move {
