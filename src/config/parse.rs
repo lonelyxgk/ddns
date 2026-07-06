@@ -60,6 +60,17 @@ pub(crate) enum ResolvType {
     Srv,
 }
 
+impl ResolvType {
+    pub(crate) fn as_string(&self) -> String {
+        match &self {
+            ResolvType::A => String::from("A"),
+            ResolvType::Aaaa => String::from("AAAA"),
+            ResolvType::Cname => String::from("CNAME"),
+            ResolvType::Srv => String::from("SRV")
+        }
+    }
+}
+
 type WebHookMap = HashMap<String, WebHook>;
 #[derive(Serialize, Deserialize, Debug, Validate, Clone)]
 #[validate(context = WebHookMap)]
