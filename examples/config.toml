@@ -18,12 +18,20 @@ syncip = 100
 
 # DNS Provider 
 # Example: [dns.{custom}]
-[dns.cloudflare111]
+[dns.custom-cloudflare]
 # Provider:
 # Cloudflare
 provider = { type="cloudflare", serect = { key = "x" } }
 # Records:
 # Support Type: A, AAAA, CNAME, SRV
+records = [
+    { domain="example.org", type="A", hostname="test", target="${ipv4}", triggers = ["test"]},
+    { domain="example.org", type="AAAA", hostname="test", target="${ipv6}", triggers = ["test"]}
+]
+
+# Porkbun Example
+[dns.custom-porkbun]
+provider = { type="porkbun", serect = { key = "xxx", secret = "xxx" } }
 records = [
     { domain="example.org", type="A", hostname="test", target="${ipv4}", triggers = ["test"]},
     { domain="example.org", type="AAAA", hostname="test", target="${ipv6}", triggers = ["test"]}
