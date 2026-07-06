@@ -11,11 +11,10 @@
 
 ### 功能特性
 
-- **DNS 提供商**: `Cloudflare` **`todo!`**
+- **DNS 提供商**: `Cloudflare` `Porkbun` **`todo!`**
 - **IP 获取方式**: 支持通过`api`获取 `text` 和 `json` 解析
-- **多源支持**: 可配置多个 IP 获取服务商
 - **解析**: `A` / `AAAA` / `CNAME` / `SRV`
-- **WebHook**: `Header` `Json` 支持 `HEAD` / `GET` / `POST` / `PUT` / `PATCH` / `DELETE`
+- **WebHook**: `Header` `Json` 支持请求方法 `HEAD` / `GET` / `POST` / `PUT` / `PATCH` / `DELETE`
 
 ## 使用
 
