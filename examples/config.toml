@@ -25,7 +25,8 @@ provider = { type="cloudflare", serect = { key = "x" } }
 # Records:
 # Support Type: A, AAAA, CNAME, SRV
 records = [
-    { domain="example.org", type="A", hostname="test", target="${ipv4}", triggers = ["test"]},
+    # Option: proxied
+    { domain="example.com", type="A", hostname="test", target="${ipv4}", triggers = ["test"], option = ["proxied"]},
     { domain="example.org", type="AAAA", hostname="test", target="${ipv6}", triggers = ["test"]}
 ]
 

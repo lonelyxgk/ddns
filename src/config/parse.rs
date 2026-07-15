@@ -82,6 +82,25 @@ pub(crate) struct Resolv {
     pub(crate) target: String,
     #[validate(custom(function = "validate_triggers", use_context))]
     pub(crate) triggers: Option<Vec<String>>,
+    pub(crate) option: Option<Vec<ResolvOption>>
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+#[serde(rename_all = "lowercase")]
+pub(crate) enum ResolvOption {
+    // Cloudflare
+    Proxied
+}
+
+impl ResolvOption {
+    fn has_option(&self, provider: &Provider) -> bool {
+        match &self {
+            ResolvOption::Proxied => {
+                let Provider::CloudFlare { key: _key}  = provider else { return false };
+                true
+            },
+        }
+    }
 }
 
 impl Resolv {
@@ -164,7 +183,14 @@ pub(super) fn check(config: &Config) -> anyhow::Result<()> {
             for resolv in &dns.records {
                 if let Some(webhooks) = &config.webhook {
                     resolv.validate_with_args(webhooks)?;
-                }
+                };
+                if let Some(option_vec) = &resolv.option {
+                    for option in option_vec {
+                        if !option.has_option(&dns.provider) {
+                            return Err(anyhow!("{:?} doesn't have this option: {:?}", &dns.provider, option));
+                        };
+                    }
+                };
             };
         }
     };

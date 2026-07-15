@@ -11,7 +11,7 @@ mod porkbun;
 #[serde(tag = "type", content = "serect")]
 pub(crate) enum Provider {
     CloudFlare { key: String },
-    PorkBun { key: String, secret: String}
+    PorkBun { key: String, secret: String }
 }
 
 pub(crate) async fn task_scheduler(provider: &Provider, resolv: &Resolv) {

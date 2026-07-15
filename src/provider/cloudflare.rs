@@ -13,7 +13,7 @@ use tracing::{info, warn};
 
 use crate::{
     config::
-        parse::{Resolv, ResolvType}, error::Error, types::placeholder_resolve_async
+        parse::{Resolv, ResolvOption, ResolvType}, error::Error, types::placeholder_resolve_async
 };
 
 #[allow(unused)]
@@ -268,7 +268,7 @@ async fn overwrite_and_create_record(
         comment: String::from(""),
         content: placeholder_resolve_async(&resolv.target).await.map_err(|err| Error::General(format!("{}", err)))?,
         private_routing: false,
-        proxied: false,
+        proxied: resolv.option.as_ref().map(|options| options.iter().any(|option| option == &ResolvOption::Proxied)).unwrap_or(false),
     };
     let resp: Response;
     if let Some(record) = record {
